@@ -34,6 +34,7 @@ resource "aws_elb" "elb" {
   }
 
   instances                   = ["${var.inst_id}"]
+  #instances                   = ["i-0e1a49a29f475b6e3"]
   cross_zone_load_balancing   = true
   idle_timeout                = 400
   connection_draining         = true
