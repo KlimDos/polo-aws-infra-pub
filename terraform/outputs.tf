@@ -16,5 +16,5 @@ output "SG_allow_4567_id" {
 }
 
 output "dns" {
-  value = "${module.ELB_classic.dns}"
+    value = "${module.ELB_classic.dns}"
 }

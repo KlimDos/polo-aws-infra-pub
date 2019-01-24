@@ -33,7 +33,8 @@ resource "aws_elb" "elb" {
     target              = "HTTP:4567/"
     interval            = 30
   }
-  instances = ["${var.inst_id}"]
+
+  instances                   = ["${var.inst_id}"]
   #instances                   = ["i-0e1a49a29f475b6e3"]
   cross_zone_load_balancing   = true
   idle_timeout                = 400
