@@ -9,7 +9,7 @@ resource "aws_launch_configuration" "lt-project" {
     "${var.v_allow_80}"
     
     ]
-  key_name = "polo-us-east-1"
+  key_name = "polo-us-east-1-1"
   user_data = "${file("app-deploy.sh")}"
   #load_balancers  = ["${var.elb_list}"]
   #load_balancers  = ["elb-0"]
@@ -22,6 +22,7 @@ resource "aws_autoscaling_group" "asg-project" {
   min_size           = 1
   vpc_zone_identifier = ["${var.zone_list}"]
   load_balancers  = ["${var.elb_list}"]
+  health_check_type         = "ELB"
   launch_configuration = "${aws_launch_configuration.lt-project.name}"
   
 }
