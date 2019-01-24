@@ -1,0 +1,43 @@
+- name: create base dirs
+  file:
+    dest: "{{ item }}"
+    state: directory
+    mode: 0755
+  with_items:
+  #- /opt/software/download
+  - /opt/logs
+
+- name: download sample-app.jar
+  get_url:
+   url: "https://github.com/simplesteph/ec2-masterclass-sampleapp/releases/download/v1.0/ec2-masterclass-sample-app.jar"
+   dest: "/opt/software/downloads/ec2-masterclass-sample-app.jar"
+   force: yes
+  become: yes
+
+- name: set systemd for sample-app
+  blockinfile:
+    create: yes
+    path: "/etc/systemd/system/sample-app.service"
+    block: |
+      [Unit]
+      Description=Simple Application
+      After=network.target
+
+      [Service]
+      Type=simple
+      ExecStart=/usr/bin/java -jar /opt/software/downloads/ec2-masterclass-sample-app.jar
+      User=centos
+
+      [Install]
+      WantedBy=multi-user.target
+  when:
+  - init == "true"
+
+- name: "enable service sample-app"
+  systemd:
+    name: "sample-app"
+    enabled: yes
+    daemon-reload: yes
+    state: started
+  when:
+  - init == "true"

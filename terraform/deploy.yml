@@ -1,0 +1,11 @@
+---
+- hosts: all:target_hosts
+  roles:
+  #- { role: devmount,       when:  init == 'true'  }
+  #- { role: os-basic,       when:  init == 'true'  }
+  #- { role: users,          when:  init == 'true'  }
+  #- { role: java,           when: (init == 'true' and srv_name != 'admin-portal') }
+  #- { role: java,            when:  init == 'true' }
+  tasks:
+    - name: ping
+      ping:

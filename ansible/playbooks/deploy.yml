@@ -1,0 +1,9 @@
+---
+- hosts: all
+  roles:
+  #- { role: devmount,       when: init == 'true'  }
+  #- { role: os-basic,       when: init == 'true'  }
+  #- { role: users,          when: init == 'true'  }
+  - { role: java,           when: init == 'true'  }
+  - { role: app-deploy,     when: init == 'true'  }
+  #- { role: tools,          when:  init == 'true'  }
