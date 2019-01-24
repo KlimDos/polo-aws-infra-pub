@@ -1,3 +1,3 @@
-variable "inst_id" {
-  type = "list"
-}
+#variable "inst_id" {
+#  type = "list"
+#}
