@@ -1,14 +1,15 @@
 # Create a new load balancer
 resource "aws_elb" "elb" {
-  name               = "elb-${count.index}"
+  name = "elb-${count.index}"
+
   #name               = "elb"
   availability_zones = ["us-east-1a", "us-east-1b", "us-east-1c", "us-east-1d", "us-east-1e", "us-east-1f"]
 
-#  access_logs {
-#    bucket        = "foo"
-#    bucket_prefix = "bar"
-#    interval      = 60
-#  }
+  #  access_logs {
+  #    bucket        = "foo"
+  #    bucket_prefix = "bar"
+  #    interval      = 60
+  #  }
 
   listener {
     instance_port     = 4567
@@ -32,14 +33,12 @@ resource "aws_elb" "elb" {
     target              = "HTTP:4567/"
     interval            = 30
   }
-
-  instances                   = ["${var.inst_id}"]
+  instances = ["${var.inst_id}"]
   #instances                   = ["i-0e1a49a29f475b6e3"]
   cross_zone_load_balancing   = true
   idle_timeout                = 400
   connection_draining         = true
   connection_draining_timeout = 400
-
   tags = {
     Name = "first-tf-elb"
   }

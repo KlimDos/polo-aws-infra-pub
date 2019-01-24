@@ -1,5 +1,6 @@
 variable "VPC" {
   description = "VPC"
+
   #default = "vpc-7bb36f03" # us-west-2
   default = "vpc-42df6f38" # us-east-1
 }
@@ -33,3 +34,4 @@ variable "region" {
 #  description = "Data Base disk image"
 #  default     = "reddit-db"
 #}
+
