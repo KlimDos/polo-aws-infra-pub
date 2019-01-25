@@ -6,13 +6,11 @@ resource "aws_launch_configuration" "lt-project" {
   security_groups = [
     "${var.v_allow_22}",
     "${var.v_allow_4567}",
-    "${var.v_allow_80}"
-    
+    "${var.v_allow_80}"    
     ]
   key_name = "polo-us-east-1-1"
-  user_data = "${file("app-deploy.sh")}"
-  #load_balancers  = ["${var.elb_list}"]
-  #load_balancers  = ["elb-0"]
+  user_data = "${file("app-deploy.sh")}"  
+  
 }
 
 resource "aws_autoscaling_group" "asg-project" {
