@@ -3,11 +3,7 @@ resource "aws_instance" "app" {
   ami           = "${var.ami}"
   instance_type = "t2.micro"
 
-  security_groups = [
-    "allow_22",
-    "allow_80",
-    "allow_4567",
-  ]
+  security_groups = ["${var.sg_list}"]
 
   key_name = "polo-us-east-1-1"
 

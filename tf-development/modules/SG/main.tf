@@ -46,15 +46,15 @@ resource "aws_security_group" "allow_4567" {
   }
 }
 
-#####################################
-/*resource "aws_security_group_rule" "first-SG-22-only" {
-  type            = "ingress"
-  from_port       = 81
-  to_port         = 81
-  protocol        = "tcp"
-  cidr_blocks     = ["0.0.0.0/0"]
-  #prefix_list_ids = ["pl-12c4e678"]
+resource "aws_security_group" "allow_8080" {
+  name        = "allow_8080"
+  description = "Allow 8080 inbound traffic"
+  vpc_id      = "${var.VPC}"
 
-  security_group_id = "sg-0016680efb8941892"
-}*/
-
+  ingress {
+    from_port   = 8080
+    to_port     = 8080
+    protocol    = "TCP"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+}

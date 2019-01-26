@@ -7,5 +7,11 @@ variable "app_ver" {
   description = "app version"
   default     = "1.0"
 }
+
+variable "sg_list" {
+  description = "list of security groups assigned to the instance"
+  type = "list"
+}
+
 variable "ASG-enabled" {  
 }

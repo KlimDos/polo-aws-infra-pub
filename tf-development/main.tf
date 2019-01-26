@@ -25,12 +25,14 @@ module "EC2_instances" {
   source = "modules/EC2"
   ami    = "ami-9887c6e7" # CentOS Linux 7 x86_64 HVM EBS ENA 1805 ### us-east-1
   #ami = "ami-3ecc8f46" # CentOS Linux 7 x86_64 HVM EBS ENA 1805 ### us-west-2 
-  ASG-enabled = "${var.ASG-enabled}"
+  ASG-enabled = "${var.ASG-enabled}" 
+  sg_list = ["${module.Security_Groups.sg1_list}"]
 
 }
 
 module "ASG-project-one" {
   source = "modules/ASG"  
+  #TODO replace strings to list
   v_allow_80 = "${module.Security_Groups.SG_allow_80_id}"
   v_allow_4567 = "${module.Security_Groups.SG_allow_4567_id}"
   v_allow_22 = "${module.Security_Groups.SG_allow_22_id}"
